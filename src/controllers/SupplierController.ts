@@ -121,7 +121,7 @@ export class SupplierController {
     supplier.isActive = isActive;
 
     try {
-      await supplierRepository.update(id, supplier);
+      await supplierRepository.save(supplier);
 
       const supplierUpdate = await supplierRepository.findOneBy({ id });
       return res.json({ supplierUpdate, message: "Editado con exito" });

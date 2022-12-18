@@ -124,7 +124,7 @@ export class CustomerController {
     customer.isActive = isActive;
 
     try {
-      await customerRepository.update(id, customer);
+      await customerRepository.save(customer);
 
       const customerUpdate = await customerRepository.findOneBy({ id });
       return res.json({ customerUpdate, message: "Editado con exito" });

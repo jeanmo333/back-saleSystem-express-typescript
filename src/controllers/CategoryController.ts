@@ -102,7 +102,7 @@ export class CategoryController {
     category.isActive = isActive ;
 
     try {
-      await categoryRepository.update(id, category);
+      await categoryRepository.save(category);
 
       const categoryUpdate = await categoryRepository.findOneBy({ id });
       return res.json({ categoryUpdate, message: "Editado con exito" });

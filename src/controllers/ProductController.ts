@@ -131,7 +131,7 @@ export class ProductController {
     product.isActive = isActive;
 
     try {
-      await productRepository.update(id, product);
+      await productRepository.save(product);
 
       const productUpdate = await productRepository.findOneBy({ id });
       return res.json({ productUpdate, message: "Editado con exito" });
