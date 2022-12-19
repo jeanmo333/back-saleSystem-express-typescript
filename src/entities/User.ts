@@ -19,6 +19,7 @@ import generarId from "../helpers/generarId";
 import { Category } from "./Category";
 import { Customer } from "./Customer";
 import { Product } from "./Product";
+import { Sale } from "./Sale";
 import { Supplier } from "./Supplier";
 
 @Entity("users")
@@ -86,8 +87,8 @@ export class User {
   @Column("text")
   web: string;
 
-    @OneToMany(() => Product, (product) => product.user)
-    product: Product;
+  @OneToMany(() => Product, (product) => product.user)
+  product: Product;
 
   @OneToMany(() => Category, (category) => category.user)
   category: Category;
@@ -96,8 +97,8 @@ export class User {
   customer: Customer;
 
  
-  //   @OneToMany(() => Sale, (sale) => sale.user)
-  //   sale: Sale;
+    @OneToMany(() => Sale, (sale) => sale.user)
+    sale: Sale;
 
   @OneToMany(() => Supplier, (suplier) => suplier.user)
   supplier: Supplier;

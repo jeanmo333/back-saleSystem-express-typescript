@@ -2,7 +2,9 @@ import { isUUID } from "class-validator";
 import { Request, Response } from "express";
 import { Product } from "../entities/Product";
 import { BadRequestError, UnauthorizedError } from "../helpers/api-erros";
+import { categoryRepository } from "../repositories/categoryRepository";
 import { productRepository } from "../repositories/productRepository";
+import { supplierRepository } from "../repositories/supplierRepository";
 
 export class ProductController {
   async create(req: Request, res: Response) {
@@ -20,9 +22,24 @@ export class ProductController {
       throw new BadRequestError("Hay Campo vacio");
     }
 
+    if (!isUUID(category)) throw new BadRequestError("Categoria no valido");
+    if (!isUUID(supplier)) throw new BadRequestError("Proveedor no valido");
+
     const productName = await productRepository.findOneBy({ name });
     if (productName) {
       throw new BadRequestError("Producto ya existe");
+    }
+
+
+    const categoryId = await categoryRepository.findOneBy({ id: category });
+    if (!categoryId) {
+      throw new BadRequestError("Categoria no existe");
+    }
+
+
+    const supplierId = await supplierRepository.findOneBy({ id : supplier });
+    if (!supplierId) {
+      throw new BadRequestError("Proveedor no existe");
     }
 
 

@@ -7,6 +7,7 @@ import categoryRoutes from './routes/categoryRoutes'
 import customerRoutes from './routes/customerRoutes'
 import supplierRoutes from './routes/supplierRoutes'
 import productRoutes from './routes/productRoutes'
+import saleRoutes from './routes/saleRoutes'
 
 
 AppDataSource.initialize().then(() => {
@@ -19,6 +20,7 @@ AppDataSource.initialize().then(() => {
 	app.use("/api/customers", customerRoutes);
 	app.use("/api/suppliers", supplierRoutes);
 	app.use("/api/products", productRoutes);
+	app.use("/api/sales", saleRoutes)
 
 	app.use(errorMiddleware)
 

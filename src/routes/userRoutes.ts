@@ -6,7 +6,7 @@ import { isAdmin } from "../middlewares/checkRoles";
 
 
 
-router.post('/', new UserController().create)
+router.post('/register', new UserController().create)
 router.post('/login', new UserController().login)
 router.get("/confirm-account/:token", new UserController().confirmAccount);
 router.post("/forget-password", new UserController().forgetPassword);

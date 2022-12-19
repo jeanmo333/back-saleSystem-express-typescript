@@ -17,6 +17,7 @@ import {
   OneToOne,
   PrimaryGeneratedColumn,
 } from "typeorm";
+import { Sale } from "./Sale";
 import { User } from "./User";
 
 @Entity("customers")
@@ -71,11 +72,9 @@ export class Customer {
   @ManyToOne(() => User, (user) => user.customer, { eager: true })
   user:Partial<User>;
 
-  // @ManyToOne(() => User, (user) => user.product, { eager: true })
-  // user: User;
 
-  // @OneToMany(() => Sale, (sale) => sale.customer)
-  // sale: Sale[];
+  @OneToMany(() => Sale, (sale) => sale.customer)
+  sale: Sale;
 
   @BeforeInsert()
   checkFieldsBeforeInsert() {

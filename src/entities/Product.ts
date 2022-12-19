@@ -12,6 +12,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from './Category';
+import { Detail } from './Detail';
 import { Supplier } from './Supplier';
 import { User } from './User';
 
@@ -80,11 +81,11 @@ export class Product {
   supplier: Supplier;
 
 
-//   @OneToMany(() => Detail, (detail) => detail.product)
-//   detail?: Detail;
+  @OneToMany(() => Detail, ( detail) =>  detail.product)
+  detail?: Detail;
 
   @ManyToOne(() => User, (user) => user.product, { eager: true })
-  user: Partial<User>;;
+  user: Partial<User>;
 
   @BeforeInsert()
   checkNameInsert() {
